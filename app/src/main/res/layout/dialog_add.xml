@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
-        app:cardCornerRadius="50dp"
+        app:cardCornerRadius="80dp"
         app:layout_constraintBottom_toTopOf="@+id/name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,9 +64,9 @@
 
         <ImageView
             android:id="@+id/phoneImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/image" />
 
     </androidx.cardview.widget.CardView>
 

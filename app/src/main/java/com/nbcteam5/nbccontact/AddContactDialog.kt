@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.nbcteam5.nbccontact.databinding.ActivityAddContactDialogBinding
 import com.nbcteam5.nbccontact.databinding.DialogAddBinding
+import com.nbcteam5.nbccontact.util.addCallDialog
 
 class AddContactDialog : AppCompatActivity() {
     lateinit var binding: ActivityAddContactDialogBinding
@@ -27,23 +28,5 @@ class AddContactDialog : AppCompatActivity() {
         binding.addDialogFloatingActionButton.setOnClickListener {
             addCallDialog()
         }
-    }
-    private fun addCallDialog() {
-        AlertDialog.Builder(this).apply {
-            val dialogBinding = DialogAddBinding.inflate(layoutInflater)
-            setView(dialogBinding.root)
-            setTitle("전화번호부 저장")
-            setPositiveButton("확인") { _, _ ->
-                with(getSharedPreferences("userInformation", Context.MODE_PRIVATE).edit()) {
-                    putString("name", dialogBinding.name.text.toString())
-                    putString("phoneNumber", dialogBinding.phoneNumber.text.toString())
-                    putString("email", dialogBinding.email.text.toString())
-                    putString("event", dialogBinding.event.text.toString())
-                    apply()
-                }
-                Toast.makeText(this@AddContactDialog, "전화번호부가 저장되었습니다", Toast.LENGTH_LONG).show()
-            }
-            setNegativeButton("취소", null)
-        }.show()
     }
 }
