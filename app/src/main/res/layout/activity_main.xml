@@ -49,7 +49,7 @@
         android:layout_gravity="end|bottom"
         android:layout_marginBottom="40dp"
         android:layout_marginEnd="20dp"
-        android:src="@drawable/baseline_group_add_24"
+        android:src="@drawable/baseline_group_add"
         app:backgroundTint="@color/theme_green"
         app:fabCustomSize="70dp"
         app:fabSize="auto"
