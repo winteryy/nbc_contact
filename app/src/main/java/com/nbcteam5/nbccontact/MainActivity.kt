@@ -10,29 +10,33 @@ import com.nbcteam5.nbccontact.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate( layoutInflater ) }
+    private lateinit var viewPagerAdapter : ViewPagerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         initViews()
-        setFrom()
     }
 
     private fun initViews() {
+
+        val list = listOf(,)
+        viewPagerAdapter = ViewPagerAdapter(list, this)
+
+        with(binding) {
+            viewPager.adapter = viewPagerAdapter
+
+            val title = listOf(R.drawable.baseline_call_24, R.drawable.baseline_contact_phone_24)
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.setIcon(title[position])
+
+
+                //((tabLayout.getTabAt(1)?.view))?.isVisible == false
+            }.attach()
+        }
 
         binding.floatButton.setOnClickListener {
             //dialog 실행
         }
     }
-
-    private fun setFrom() {
-        val move = supportFragmentManager.beginTransaction()
-        move.replace(R.id.fragment_layout, MainFragment())
-        move.commit()
-    }
-    /*fun goFrom() { //리스트 페이지 이동
-        val trans = supportFragmentManager.beginTransaction()
-        trans.replace(R.id.fragment_layout, FragmentC())
-        trans.commit()
-    }*/
 }

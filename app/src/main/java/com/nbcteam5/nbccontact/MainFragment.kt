@@ -18,24 +18,9 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMainBinding.inflate( layoutInflater )
-        initViews()
 
         return binding.root
     }
 
-    private fun initViews() {
-        val list = listOf(, )
-        viewPagerAdapter = ViewPagerAdapter(list, requireActivity())
 
-        with(binding) {
-            viewPager.adapter = viewPagerAdapter
-
-            val title = listOf(R.drawable.baseline_call_24, R.drawable.baseline_contact_phone_24)
-            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-                tab.setIcon(title[position])
-
-                //((tabLayout.getTabAt(1)?.view))?.isVisible == false
-            }.attach()
-        }
-    }
 }
