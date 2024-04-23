@@ -6,6 +6,10 @@
         <item name="colorPrimary">@color/theme_olive</item>
         <item name="colorOnPrimary">@color/white</item>
     </style>
+    <style name="RoundImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 
     <style name="CollapsingToolbar.TitleText.Expanded" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
         <item name="android:textColor">@color/black</item>

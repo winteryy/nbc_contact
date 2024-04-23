@@ -35,6 +35,9 @@ object ContactDatabase {
         contact11
     )
 
+    //저장된 데이터를 이름순으로 정렬하는 함수
+    fun nameSorting() = totalContactData.sortedWith(compareBy({!it.isFavorite},{it.name}))
+
     private val totalContactData: List<ContactData> get() = _totalContactData
 
     fun getContactData(): List<ContactData> = totalContactData
