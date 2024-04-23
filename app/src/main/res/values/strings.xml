@@ -7,5 +7,10 @@
     <string name="name">이름</string>
     <string name="address">주소</string>
     <string name="contact">연락처</string>
-    
+
+
+
+    <string name="call">통화</string>
+    <string name="sms">메시지</string>
+    <string name="email">이메일</string>
 </resources>
