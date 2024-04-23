@@ -3,6 +3,7 @@ package com.nbcteam5.nbccontact
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.constraintlayout.motion.utils.ViewState
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
@@ -30,9 +31,9 @@ class MainActivity : AppCompatActivity() {
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 tab.setIcon(title[position])
 
-
-                //((tabLayout.getTabAt(1)?.view))?.isVisible == false
             }.attach()
+            tabLayout.getTabAt(0)!!.view.visibility = View.VISIBLE
+            tabLayout.getTabAt(1)!!.view.visibility = View.GONE
         }
 
         binding.floatButton.setOnClickListener {
