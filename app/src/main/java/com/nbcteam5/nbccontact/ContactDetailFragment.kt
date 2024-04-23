@@ -23,6 +23,17 @@ class ContactDetailFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+//        val contactData = arguments?.getParcelable() 데이터 불러오기
+
+        binding.toolBar.setNavigationOnClickListener {
+            //TODO 뒤로가기
+        }
+
+//        binding.apply {
+//            데이터 바인드 할 부분
+//        }
     }
 
     override fun onDestroyView() {
