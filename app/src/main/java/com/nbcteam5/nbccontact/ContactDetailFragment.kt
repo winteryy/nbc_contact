@@ -29,4 +29,5 @@ class ContactDetailFragment: Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }
