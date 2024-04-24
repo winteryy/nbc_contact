@@ -4,8 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import coil.Coil
+import coil.ImageLoader
+import coil.imageLoader
 import coil.load
+import coil.request.ImageRequest
 import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.FragmentContactDetailBinding
 
@@ -13,6 +19,8 @@ class ContactDetailFragment: Fragment() {
 
     private var _binding: FragmentContactDetailBinding? = null
     private val binding get() = _binding!!
+
+    private var isFavorite = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +36,7 @@ class ContactDetailFragment: Fragment() {
 
 //        val contactData = arguments?.getParcelable() 데이터 불러오기
         val contactData = ContactDatabase.getContactData()[0]
+        isFavorite = contactData.isFavorite
 
         binding.toolBar.setNavigationOnClickListener {
             //TODO 뒤로가기
@@ -39,6 +48,21 @@ class ContactDetailFragment: Fragment() {
             phoneNumberContent.setContentText(contactData.phoneNumber)
             addressContent.setContentText(contactData.address)
             emailContent.setContentText(contactData.email)
+            toolBar.setOnMenuItemClickListener { menu ->
+                when(menu.itemId) {
+                    R.id.favoriteButton -> {
+                        menu.icon =
+                            if(isFavorite) ContextCompat.getDrawable(requireContext(), R.drawable.baseline_star_border_32)
+                            else ContextCompat.getDrawable(requireContext(), R.drawable.baseline_star_filled_32)
+                        isFavorite = !isFavorite
+                    }
+                    else -> {
+                        Unit
+                    }
+                }
+                return@setOnMenuItemClickListener menu != null
+            }
+
         }
     }
 
