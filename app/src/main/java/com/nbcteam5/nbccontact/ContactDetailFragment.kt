@@ -53,6 +53,7 @@ class ContactDetailFragment: Fragment() {
                             if(isFavorite) ContextCompat.getDrawable(requireContext(), R.drawable.baseline_star_border_32)
                             else ContextCompat.getDrawable(requireContext(), R.drawable.baseline_star_filled_32)
                         isFavorite = !isFavorite
+                        //TODO 실제 업데이트
                     }
                     else -> {
                         Unit
