@@ -12,7 +12,7 @@ import coil.load
 import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.FragmentContactDetailBinding
 
-class ContactDetailFragment: Fragment() {
+class ContactDetailFragment : Fragment() {
 
     private var _binding: FragmentContactDetailBinding? = null
     private val binding get() = _binding!!
@@ -37,6 +37,7 @@ class ContactDetailFragment: Fragment() {
 
         binding.toolBar.setNavigationOnClickListener {
             //TODO 뒤로가기
+            requireActivity().
         }
 
         binding.apply {
@@ -47,14 +48,21 @@ class ContactDetailFragment: Fragment() {
             emailContent.setContentText(contactData.email)
             toolBar.title = contactData.name
             toolBar.setOnMenuItemClickListener { menu ->
-                when(menu.itemId) {
+                when (menu.itemId) {
                     R.id.favoriteButton -> {
                         menu.icon =
-                            if(isFavorite) ContextCompat.getDrawable(requireContext(), R.drawable.baseline_star_border_32)
-                            else ContextCompat.getDrawable(requireContext(), R.drawable.baseline_star_filled_32)
+                            if (isFavorite) ContextCompat.getDrawable(
+                                requireContext(),
+                                R.drawable.baseline_star_border_32
+                            )
+                            else ContextCompat.getDrawable(
+                                requireContext(),
+                                R.drawable.baseline_star_filled_32
+                            )
                         isFavorite = !isFavorite
                         //TODO 실제 업데이트
                     }
+
                     else -> {
                         Unit
                     }
@@ -64,7 +72,7 @@ class ContactDetailFragment: Fragment() {
 
             callButton.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW).apply {
-                    data = Uri.parse("tel:"+contactData.phoneNumber)
+                    data = Uri.parse("tel:" + contactData.phoneNumber)
                 })
             }
             smsButton.setOnClickListener {
