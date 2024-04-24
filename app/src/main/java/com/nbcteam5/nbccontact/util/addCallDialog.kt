@@ -37,9 +37,9 @@ fun Fragment.addCallDialog(): Boolean {
         val newImage = dialogBinding.phoneImageView.toString()
 
         //이미 저장되어 있는 번호
-        val existsName = ContactDatabase.findContactByName(newName)
+        val existPhoneNumber = ContactDatabase.findContactByName(newPhoneNumber)
 
-        if (existsName != null) {
+        if (existPhoneNumber != null) {
             Toast.makeText(requireContext(), "이미 저장되어 있는 번호 입니다", Toast.LENGTH_LONG).show()
             return@setOnClickListener
         } else if (!isValidPhoneNumber(newPhoneNumber)) {
