@@ -28,7 +28,7 @@ class ContactDetailFragment: Fragment() {
 //        val contactData = arguments?.getParcelable() 데이터 불러오기
 
         binding.toolBar.setNavigationOnClickListener {
-            //TODO 뒤로가기
+            //뒤로가기
         }
 
 //        binding.apply {
