@@ -22,4 +22,8 @@ class DetailContentView(context: Context, attrs: AttributeSet): CardView(context
 
         typedArray.recycle()
     }
+
+    fun setContentText(content: String) {
+        binding.contentTextView.text = content
+    }
 }

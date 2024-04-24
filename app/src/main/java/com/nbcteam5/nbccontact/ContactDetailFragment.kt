@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import coil.load
+import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.FragmentContactDetailBinding
 
 class ContactDetailFragment: Fragment() {
@@ -24,16 +26,20 @@ class ContactDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
 //        val contactData = arguments?.getParcelable() 데이터 불러오기
+        val contactData = ContactDatabase.getContactData()[0]
 
         binding.toolBar.setNavigationOnClickListener {
             //TODO 뒤로가기
         }
 
-//        binding.apply {
-//            데이터 바인드 할 부분
-//        }
+        binding.apply {
+            profileImageView.load(contactData.profileImage)
+            nameContent.setContentText(contactData.name)
+            phoneNumberContent.setContentText(contactData.phoneNumber)
+            addressContent.setContentText(contactData.address)
+            emailContent.setContentText(contactData.email)
+        }
     }
 
     override fun onDestroyView() {
