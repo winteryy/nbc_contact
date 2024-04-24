@@ -3,6 +3,9 @@ package com.nbcteam5.nbccontact
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nbcteam5.nbccontact.databinding.ActivityMainBinding
 
@@ -19,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
 
-        val list = listOf(,)
+        val list = listOf(ContactListFragment(), ContactDetailFragment())
         viewPagerAdapter = ViewPagerAdapter(list, this)
 
         with(binding) {
@@ -30,8 +33,32 @@ class MainActivity : AppCompatActivity() {
                 tab.setIcon(title[position])
 
             }.attach()
-            tabLayout.getTabAt(0)!!.view.visibility = View.VISIBLE
-            tabLayout.getTabAt(1)!!.view.visibility = View.GONE
+
+            tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    if(tabLayout.selectedTabPosition == 1) {
+                        tabLayout.isVisible = tabLayout.selectedTabPosition != 1
+                    } else {
+                        tabLayout.isVisible = true
+                    }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                    if(tabLayout.selectedTabPosition == 1) {
+                        tabLayout.isVisible = tabLayout.selectedTabPosition != 1
+                    } else {
+                        tabLayout.isVisible = true
+                    }
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                    if(tabLayout.selectedTabPosition == 1) {
+                        tabLayout.isVisible = tabLayout.selectedTabPosition != 1
+                    } else {
+                        tabLayout.isVisible = true
+                    }
+                }
+            })
         }
 
         binding.floatButton.setOnClickListener {
