@@ -1,17 +1,14 @@
 package com.nbcteam5.nbccontact
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
-import coil.Coil
-import coil.ImageLoader
-import coil.imageLoader
 import coil.load
-import coil.request.ImageRequest
 import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.FragmentContactDetailBinding
 
@@ -48,6 +45,7 @@ class ContactDetailFragment: Fragment() {
             phoneNumberContent.setContentText(contactData.phoneNumber)
             addressContent.setContentText(contactData.address)
             emailContent.setContentText(contactData.email)
+            toolBar.title = contactData.name
             toolBar.setOnMenuItemClickListener { menu ->
                 when(menu.itemId) {
                     R.id.favoriteButton -> {
@@ -63,6 +61,16 @@ class ContactDetailFragment: Fragment() {
                 return@setOnMenuItemClickListener menu != null
             }
 
+            callButton.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_VIEW).apply {
+                    data = Uri.parse("tel:"+contactData.phoneNumber)
+                })
+            }
+            smsButton.setOnClickListener {
+                startActivity(Intent(Intent.ACTION_SENDTO).apply {
+                    data = Uri.parse("smsto:${contactData.phoneNumber}")
+                })
+            }
         }
     }
 
