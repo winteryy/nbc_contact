@@ -33,18 +33,29 @@ fun Activity.addCallDialog() {
         val newEmail = dialogBinding.email.text.toString()
         val newEvent = dialogBinding.event.text.toString()
 
+        //이미 저장되어 있는 전화번호와 이름
+        val existsPhoneNumber = contactList.any {it.phoneNumber == newPhoneNumber}
 
         dialogBinding.saveBtn.setOnClickListener {
-            val newContact = ContactData(
-                id = System.currentTimeMillis(),
-                name = newName,
-                profileImage = "",
-                phoneNumber = newPhoneNumber,
-                address = newEvent,
-                email = newEmail,
-                isFavorite = false
-            )
-            Toast.makeText(this, "연락처가 저장되었습니다", Toast.LENGTH_LONG).show()
+            if (existsPhoneNumber) {
+                Toast.makeText(this, "이미 저장되어 있는 번호 입니다", Toast.LENGTH_LONG).show()
+            } else if (!isValidPhoneNumber(newPhoneNumber)) {
+                Toast.makeText(this, "번호 저장 방식이 잘못되었습니다", Toast.LENGTH_LONG).show()
+            } else {
+                val newContact = ContactData(
+                    id = System.currentTimeMillis(),
+                    name = newName,
+                    profileImage = "",
+                    phoneNumber = newPhoneNumber,
+                    address = newEvent,
+                    email = newEmail,
+                    isFavorite = false
+                )
+                Toast.makeText(this, "연락처가 저장되었습니다", Toast.LENGTH_LONG).show()
+                // 연락처를 저장
+                contactList.add(newContact)
+                dialog.dismiss()
+            }
         }
 
         dialogBinding.cancleBtn.setOnClickListener {
@@ -67,4 +78,7 @@ fun Activity.addCallDialog() {
         }
     }
 }
-
+fun isValidPhoneNumber(phoneNumber: String): Boolean {
+    // 대한민국 휴대폰 번호 형식 예시: 010-1234-5678
+    return phoneNumber.matches("^01[016789]\\d{3,4}\\d{4}$".toRegex())
+}
