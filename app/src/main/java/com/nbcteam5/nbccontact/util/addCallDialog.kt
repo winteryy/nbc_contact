@@ -1,15 +1,12 @@
+@file:Suppress("UNREACHABLE_CODE")
+
 package com.nbcteam5.nbccontact.util
 
 import android.app.Activity
-import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
-import android.view.Gravity
 import android.view.Window
-
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.nbcteam5.nbccontact.data.ContactData
@@ -17,10 +14,11 @@ import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.DialogAddBinding
 
 
-fun Fragment.addCallDialog(): Boolean {
-    var result = false
+fun Activity.addCallDialog(
+    onSuccess: () -> Unit
+) {
     val dialogBinding = DialogAddBinding.inflate(layoutInflater)
-    val dialog = AlertDialog.Builder(requireContext())
+    val dialog = AlertDialog.Builder(this)
         .setView(dialogBinding.root)
         .create() // Dialog 실제 생성 부분
 
@@ -40,10 +38,10 @@ fun Fragment.addCallDialog(): Boolean {
         val existPhoneNumber = ContactDatabase.findContactByName(newPhoneNumber)
 
         if (existPhoneNumber != null) {
-            Toast.makeText(requireContext(), "이미 저장되어 있는 번호 입니다", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "이미 저장되어 있는 번호 입니다", Toast.LENGTH_LONG).show()
             return@setOnClickListener
         } else if (!isValidPhoneNumber(newPhoneNumber)) {
-            Toast.makeText(requireContext(), "번호 저장 방식이 잘못되었습니다", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "번호 저장 방식이 잘못되었습니다", Toast.LENGTH_LONG).show()
             return@setOnClickListener
         } else {
             val newContact = ContactData(
@@ -55,32 +53,29 @@ fun Fragment.addCallDialog(): Boolean {
             )
             // 연락처를 저장
             ContactDatabase.addContactData(newContact)
-
-            Toast.makeText(requireContext(), "연락처가 저장되었습니다", Toast.LENGTH_LONG).show()
+            onSuccess.invoke()
+            Toast.makeText(this, "연락처가 저장되었습니다", Toast.LENGTH_LONG).show()
 
             dialog.dismiss()
-            result = true
-        }
-
-        dialogBinding.cancleBtn.setOnClickListener {
-            Toast.makeText(requireContext(), "취소 되었습니다", Toast.LENGTH_LONG).show()
-            dialog.dismiss() // 취소 버튼 클릭 후 대화상자 닫기
-        }
-        dialog.show()
-
-        // 다이얼로그의 크기 조정
-        val window = dialog.window
-        if (window != null) {
-            val displayMetrics = resources.displayMetrics.density
-            val dpWidth = 300
-            val dpHeight = 600
-            val width = (displayMetrics * dpWidth).toInt()
-            val height = (displayMetrics * dpHeight).toInt()
-
-            window.setLayout(width, height)
         }
     }
-    return result
+    dialogBinding.cancleBtn.setOnClickListener {
+        Toast.makeText(this, "취소 되었습니다", Toast.LENGTH_LONG).show()
+        dialog.dismiss() // 취소 버튼 클릭 후 대화상자 닫기
+    }
+    dialog.show()
+
+    // 다이얼로그의 크기 조정
+    val window = dialog.window
+    if (window != null) {
+        val displayMetrics = resources.displayMetrics.density
+        val dpWidth = 300
+        val dpHeight = 600
+        val width = (displayMetrics * dpWidth).toInt()
+        val height = (displayMetrics * dpHeight).toInt()
+
+        window.setLayout(width, height)
+    }
 }
 
 fun isValidPhoneNumber(phoneNumber: String): Boolean {
