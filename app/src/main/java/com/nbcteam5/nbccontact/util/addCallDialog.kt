@@ -12,8 +12,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.databinding.DialogAddBinding
-import com.nbcteam5.nbccontact.util.UserInformation.USER_INFORMATION
 
 
 fun Activity.addCallDialog() {
@@ -22,8 +22,6 @@ fun Activity.addCallDialog() {
         .setView(dialogBinding.root)
         .create() // Dialog 실제 생성 부분
 
-    val sharedPreferences =
-        getSharedPreferences(USER_INFORMATION, Context.MODE_PRIVATE)
     // 모서리 둥글기
     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
     dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -34,29 +32,20 @@ fun Activity.addCallDialog() {
         val newPhoneNumber = dialogBinding.phoneNumber.text.toString()
         val newEmail = dialogBinding.email.text.toString()
         val newEvent = dialogBinding.event.text.toString()
-        // 이미 저장되어 있는 이름과 번호
-        val existingName = sharedPreferences.getString(UserInformation.NAME, null)
-        val existingPhoneNumber = sharedPreferences.getString(UserInformation.PHONE_NUMBER, null)
 
-        if (newName == existingName) {
-            Toast.makeText(this, "이미 저장된 이름입니다.", Toast.LENGTH_LONG).show()
-        } else if (newPhoneNumber == existingPhoneNumber) {
-            Toast.makeText(this, "이미 저장된 번호입니다.", Toast.LENGTH_LONG).show()
-        } else if (!UserInformation.isValidPhoneNumber(newPhoneNumber)) {
-            Toast.makeText(this, "번화 저장 형식이 틀렸습니다.", Toast.LENGTH_LONG).show()
-        } else {
-            with(sharedPreferences.edit()) {
-                putString(UserInformation.NAME, newName)
-                putString(UserInformation.PHONE_NUMBER, newPhoneNumber)
-                putString(UserInformation.EMAIL, newEmail)
-                putString(UserInformation.EVENT, newEvent)
-                apply()
-            }
-            Toast.makeText(this, "저장이 되었습니다", Toast.LENGTH_LONG).show()
-            dialog.dismiss() // 저장 후 대화상자 닫기
 
+        dialogBinding.saveBtn.setOnClickListener {
+            val newContact = ContactData(
+                id = System.currentTimeMillis(),
+                name = newName,
+                profileImage = "",
+                phoneNumber = newPhoneNumber,
+                address = newEvent,
+                email = newEmail,
+                isFavorite = false
+            )
+            Toast.makeText(this, "연락처가 저장되었습니다", Toast.LENGTH_LONG).show()
         }
-
 
         dialogBinding.cancleBtn.setOnClickListener {
             Toast.makeText(this, "취소 되었습니다", Toast.LENGTH_LONG).show()
@@ -78,3 +67,4 @@ fun Activity.addCallDialog() {
         }
     }
 }
+
