@@ -14,8 +14,9 @@ import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.DialogAddBinding
 
 
-fun Activity.addCallDialog(): Boolean {
-    var result = false
+fun Activity.addCallDialog(
+    onSuccess: () -> Unit
+) {
     val dialogBinding = DialogAddBinding.inflate(layoutInflater)
     val dialog = AlertDialog.Builder(this)
         .setView(dialogBinding.root)
@@ -52,11 +53,10 @@ fun Activity.addCallDialog(): Boolean {
             )
             // 연락처를 저장
             ContactDatabase.addContactData(newContact)
-
+            onSuccess.invoke()
             Toast.makeText(this, "연락처가 저장되었습니다", Toast.LENGTH_LONG).show()
 
             dialog.dismiss()
-            result = true
         }
     }
     dialogBinding.cancleBtn.setOnClickListener {
@@ -64,7 +64,6 @@ fun Activity.addCallDialog(): Boolean {
         dialog.dismiss() // 취소 버튼 클릭 후 대화상자 닫기
     }
     dialog.show()
-    return result
 
     // 다이얼로그의 크기 조정
     val window = dialog.window
