@@ -33,11 +33,11 @@ fun Activity.addCallDialog() {
         val newEmail = dialogBinding.email.text.toString()
         val newEvent = dialogBinding.event.text.toString()
 
-        //이미 저장되어 있는 전화번호와 이름
-        val existsPhoneNumber = contactList.any {it.phoneNumber == newPhoneNumber}
+        //이미 저장되어 있는 전화번호
+        val existsName = userData.any {it.name == newName}
 
         dialogBinding.saveBtn.setOnClickListener {
-            if (existsPhoneNumber) {
+            if (existsName) {
                 Toast.makeText(this, "이미 저장되어 있는 번호 입니다", Toast.LENGTH_LONG).show()
             } else if (!isValidPhoneNumber(newPhoneNumber)) {
                 Toast.makeText(this, "번호 저장 방식이 잘못되었습니다", Toast.LENGTH_LONG).show()
@@ -53,7 +53,7 @@ fun Activity.addCallDialog() {
                 )
                 Toast.makeText(this, "연락처가 저장되었습니다", Toast.LENGTH_LONG).show()
                 // 연락처를 저장
-                contactList.add(newContact)
+                userData.add(newContact)
                 dialog.dismiss()
             }
         }
