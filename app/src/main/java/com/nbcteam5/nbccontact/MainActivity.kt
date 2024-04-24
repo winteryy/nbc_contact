@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
+import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
 
-        val list = listOf(ContactListFragment(), ContactDetailFragment())
+        val list = listOf(ContactListFragment(), MyPageFragment())
         viewPagerAdapter = ViewPagerAdapter(list, this)
 
         with(binding) {
@@ -64,5 +65,18 @@ class MainActivity : AppCompatActivity() {
         binding.floatButton.setOnClickListener {
             //dialog 실행
         }
+    }
+
+    fun detailFromList(contactData: ContactData) {
+        val bundle = Bundle()
+        val detailFragment = ContactDetailFragment()
+        bundle.putParcelable("DETAIL_FROM_LIST", contactData)
+        detailFragment.arguments = bundle
+
+        val trans = supportFragmentManager.beginTransaction()
+        trans.replace(R.id.view_pager, detailFragment)
+        trans.setReorderingAllowed(true)
+        trans.addToBackStack(null)
+        trans.commit()
     }
 }
