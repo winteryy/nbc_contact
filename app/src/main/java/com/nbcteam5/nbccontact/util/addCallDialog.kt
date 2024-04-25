@@ -2,20 +2,34 @@
 
 package com.nbcteam5.nbccontact.util
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context.ALARM_SERVICE
+import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.SystemClock
 import android.util.Patterns
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.fragment.app.Fragment
+import androidx.core.content.ContextCompat
+import com.google.android.material.chip.Chip
+import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.DialogAddBinding
+import com.nbcteam5.nbccontact.util.Constant.Companion.ALARM_10TIMER
+import com.nbcteam5.nbccontact.util.Constant.Companion.ALARM_30TIMER
+import com.nbcteam5.nbccontact.util.Constant.Companion.ALARM_5TIMER
+import com.nbcteam5.nbccontact.util.Constant.Companion.NOTIFICATION_ID
 
 
+@SuppressLint("ScheduleExactAlarm")
+@Suppress("DEPRECATION")
 fun Activity.addCallDialog(
     onSuccess: () -> Unit
 ) {
@@ -28,6 +42,62 @@ fun Activity.addCallDialog(
     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
     dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+    // chip 그룹
+    val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+
+    val intent = Intent(this,AlarmReceiver::class.java)
+    val pendingIntent = PendingIntent.getBroadcast(
+        this, NOTIFICATION_ID, intent,
+        PendingIntent.FLAG_UPDATE_CURRENT
+    )
+
+
+    val chipGroup = dialogBinding.chipGroup
+    chipGroup.setOnCheckedChangeListener { group, checkedId ->
+        for (i in 0 until group.childCount) {
+            val chip = group.getChildAt(i) as Chip
+            if(chip.id == checkedId) {
+                // 선택된 Chip의 배경색을 변경합니다.
+                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.theme_green))
+            } else {
+                // 다른 Chip들은 원래의 색상으로 되돌립니다.
+                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.theme_light_green))
+            }
+        }
+        when (checkedId) {
+            R.id.off -> {null}
+            R.id.minute5 -> {
+                val triggerTime = (SystemClock.elapsedRealtime() // 기기가 부팅된 후 경과한 시간 사용
+                        + ALARM_5TIMER * 1000) // ms 이기 때문에 초단위로 변환 (*1000)
+                alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    triggerTime,
+                    pendingIntent
+                ) // set : 일회성 알림
+                "$ALARM_5TIMER 분 후에 알림이 발생합니다."
+            }
+            R.id.minute10 -> {
+                val triggerTime = (SystemClock.elapsedRealtime() // 기기가 부팅된 후 경과한 시간 사용
+                        + ALARM_10TIMER * 1000) // ms 이기 때문에 초단위로 변환 (*1000)
+                alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    triggerTime,
+                    pendingIntent
+                ) // set : 일회성 알림
+                "$ALARM_10TIMER 분 후에 알림이 발생합니다."
+            }
+            R.id.minute30 -> {
+                val triggerTime = (SystemClock.elapsedRealtime() // 기기가 부팅된 후 경과한 시간 사용
+                        + ALARM_30TIMER * 1000) // ms 이기 때문에 초단위로 변환 (*1000)
+                alarmManager.setExact(
+                    AlarmManager.RTC_WAKEUP,
+                    triggerTime,
+                    pendingIntent
+                ) // set : 일회성 알림
+                "$ALARM_30TIMER 분 후에 알림이 발생합니다."
+            }
+        }
+    }
 
     dialogBinding.saveBtn.setOnClickListener {
         val newName = dialogBinding.name.text.toString()
@@ -73,7 +143,7 @@ fun Activity.addCallDialog(
     val window = dialog.window
     if (window != null) {
         val displayMetrics = resources.displayMetrics.density
-        val dpWidth = 300
+        val dpWidth = 400
         val dpHeight = 600
         val width = (displayMetrics * dpWidth).toInt()
         val height = (displayMetrics * dpHeight).toInt()
@@ -90,4 +160,6 @@ private fun isValidPhoneNumber(phoneNumber: String): Boolean {
 private fun isValidEamil(email: String): Boolean {
     return Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
+
+
 
