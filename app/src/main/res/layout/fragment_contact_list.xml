@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/contactListFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/theme_green"
+    tools:context=".ContactListFragment">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/innerConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/theme_green"
+        app:layout_constraintBottom_toTopOf="@id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/callimg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnListGrid"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/icon_click_recycler_view_background"
+            android:scaleType="centerInside"
+            android:src="@drawable/icon_grid_black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/theme_beige"
+        app:layout_constraintTop_toBottomOf="@id/innerConstraintLayout"
+        tools:itemCount="10"
+        tools:listitem="@layout/layout_rv_user">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="120dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/baseline_group_add"
+        app:backgroundTint="@color/theme_light_green"
+        app:fabCustomSize="70dp"
+        app:fabSize="auto"
+        app:maxImageSize="50dp"
+        android:visibility="invisible"
+        tools:ignore="ContentDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
