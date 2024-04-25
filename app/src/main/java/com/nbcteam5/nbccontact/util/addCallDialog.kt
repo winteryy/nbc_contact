@@ -5,6 +5,7 @@ package com.nbcteam5.nbccontact.util
 import android.app.Activity
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Patterns
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -43,6 +44,8 @@ fun Activity.addCallDialog(
         } else if (!isValidPhoneNumber(newPhoneNumber)) {
             Toast.makeText(this, "번호 저장 방식이 잘못되었습니다", Toast.LENGTH_LONG).show()
             return@setOnClickListener
+        } else if(!isValidEamil(newEmail)) {
+            Toast.makeText(this, "이메일 작성방법이 잘못되었습니다.", Toast.LENGTH_LONG).show()
         } else {
             val newContact = ContactData(
                 name = newName,
@@ -78,8 +81,12 @@ fun Activity.addCallDialog(
     }
 }
 
-fun isValidPhoneNumber(phoneNumber: String): Boolean {
+private fun isValidPhoneNumber(phoneNumber: String): Boolean {
     // 대한민국 휴대폰 번호 형식 예시: 010-1234-5678
     return phoneNumber.matches("^01[016789]\\d{3,4}\\d{4}$".toRegex())
+}
+
+private fun isValidEamil(email: String): Boolean {
+    return Patterns.EMAIL_ADDRESS.matcher(email).matches()
 }
 
