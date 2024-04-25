@@ -17,6 +17,7 @@ import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.material.chip.Chip
 import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.data.ContactData
@@ -54,7 +55,7 @@ fun Activity.addCallDialog(
         for (i in 0 until group.childCount) {
             val chip = group.getChildAt(i) as Chip
             if (chip.id == checkedId) {
-                // 선택된 Chip의 배경색을 변경합니다.
+                // 선택된 Chip의 배경색을 변경
                 chip.chipBackgroundColor = ColorStateList.valueOf(
                     ContextCompat.getColor(
                         this,
@@ -62,51 +63,13 @@ fun Activity.addCallDialog(
                     )
                 )
             } else {
-                // 다른 Chip들은 원래의 색상으로 되돌립니다.
+                // 다른 Chip들은 원래의 색상으로 되돌아 간다
                 chip.chipBackgroundColor = ColorStateList.valueOf(
                     ContextCompat.getColor(
                         this,
                         R.color.theme_light_green
                     )
                 )
-            }
-        }
-        when (checkedId) {
-            R.id.off -> {
-                null
-            }
-
-            R.id.minute5 -> {
-                val triggerTime = (SystemClock.elapsedRealtime() // 기기가 부팅된 후 경과한 시간 사용
-                        + ALARM_5TIMER * 1000) // ms 이기 때문에 초단위로 변환 (*1000)
-                alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    triggerTime,
-                    pendingIntent
-                ) // set : 일회성 알림
-                Toast.makeText(this, "$ALARM_5TIMER 분 후에 알림이 발생합니다.", Toast.LENGTH_LONG).show()
-            }
-
-            R.id.minute10 -> {
-                val triggerTime = (SystemClock.elapsedRealtime() // 기기가 부팅된 후 경과한 시간 사용
-                        + ALARM_10TIMER * 1000) // ms 이기 때문에 초단위로 변환 (*1000)
-                alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    triggerTime,
-                    pendingIntent
-                ) // set : 일회성 알림
-                Toast.makeText(this, "$ALARM_10TIMER 분 후에 알림이 발생합니다.", Toast.LENGTH_LONG).show()
-            }
-
-            R.id.minute30 -> {
-                val triggerTime = (SystemClock.elapsedRealtime() // 기기가 부팅된 후 경과한 시간 사용
-                        + ALARM_30TIMER * 1000) // ms 이기 때문에 초단위로 변환 (*1000)
-                alarmManager.setExact(
-                    AlarmManager.RTC_WAKEUP,
-                    triggerTime,
-                    pendingIntent
-                ) // set : 일회성 알림
-                Toast.makeText(this, "$ALARM_30TIMER 분 후에 알림이 발생합니다.", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -130,6 +93,10 @@ fun Activity.addCallDialog(
         } else if (!isValidEamil(newEmail)) {
             Toast.makeText(this, "이메일 작성방법이 잘못되었습니다.", Toast.LENGTH_LONG).show()
         } else {
+            val selectedChipId = dialogBinding.chipGroup.checkedChipId
+            if (selectedChipId != -1) {
+                setNotification(selectedChipId)
+            }
             val newContact = ContactData(
                 name = newName,
                 profileImage = newImage,
@@ -139,8 +106,8 @@ fun Activity.addCallDialog(
             )
             // 연락처를 저장
             ContactDatabase.addContactData(newContact)
-            onSuccess.invoke()
             Toast.makeText(this, "연락처가 저장되었습니다", Toast.LENGTH_LONG).show()
+            onSuccess.invoke()
 
             dialog.dismiss()
         }
@@ -171,6 +138,37 @@ private fun isValidPhoneNumber(phoneNumber: String): Boolean {
 
 private fun isValidEamil(email: String): Boolean {
     return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+}
+
+@SuppressLint("ScheduleExactAlarm")
+fun Activity.setNotification(selectedChipId: Int) {
+    val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
+    val intent = Intent(this, AlarmReceiver::class.java)
+    val pendingIntent = PendingIntent.getBroadcast(this, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+    when (selectedChipId) {
+        R.id.off -> {
+            null
+        }
+
+        R.id.minute5 -> {
+            val triggerTime = SystemClock.elapsedRealtime() + ALARM_5TIMER * 1000
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
+            Toast.makeText(this, "$ALARM_5TIMER 분 후에 알림이 발생합니다.", Toast.LENGTH_LONG).show()
+        }
+
+        R.id.minute10 -> {
+            val triggerTime = SystemClock.elapsedRealtime() + ALARM_10TIMER * 1000
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
+            Toast.makeText(this, "$ALARM_10TIMER 분 후에 알림이 발생합니다.", Toast.LENGTH_LONG).show()
+        }
+
+        R.id.minute30 -> {
+            val triggerTime = SystemClock.elapsedRealtime() + ALARM_30TIMER * 1000
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
+            Toast.makeText(this, "$ALARM_30TIMER 분 후에 알림이 발생합니다.", Toast.LENGTH_LONG).show()
+        }
+    }
 }
 
 
