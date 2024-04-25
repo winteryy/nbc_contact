@@ -1,13 +1,7 @@
 package com.nbcteam5.nbccontact
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import com.google.android.material.tabs.TabLayoutMediator
+import androidx.appcompat.app.AppCompatActivity
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.databinding.ActivityMainBinding
 import com.nbcteam5.nbccontact.util.addCallDialog
@@ -53,7 +47,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun listFromDetail(isUpdated : Boolean) {
-        supportFragmentManager.popBackStack()
         if(isUpdated) {
             plugIn()
         }
