@@ -13,6 +13,7 @@ import com.nbcteam5.nbccontact.databinding.ActivityMainBinding
 import com.nbcteam5.nbccontact.util.addCallDialog
 
 class MainActivity : AppCompatActivity() {
+
     private val binding by lazy { ActivityMainBinding.inflate( layoutInflater ) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
