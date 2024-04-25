@@ -2,13 +2,16 @@ package com.nbcteam5.nbccontact
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.os.BundleCompat.getParcelable
 import androidx.fragment.app.Fragment
 import coil.load
+import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.FragmentContactDetailBinding
 
@@ -17,7 +20,18 @@ class ContactDetailFragment : Fragment() {
     private var _binding: FragmentContactDetailBinding? = null
     private val binding get() = _binding!!
 
+    private var contactData: ContactData? = null
+
     private var isFavorite = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        contactData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(MainActivity.DETAIL_FROM_LIST, ContactData::class.java)
+        }else {
+            arguments?.getParcelable(MainActivity.DETAIL_FROM_LIST) as ContactData?
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,12 +45,11 @@ class ContactDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val contactData = arguments?.getParcelable() 데이터 불러오기
-        val contactData = ContactDatabase.getContactData()[0]
+        val contactData = contactData?:return
         isFavorite = contactData.isFavorite
 
         binding.toolBar.setNavigationOnClickListener {
-            //뒤로가기
+            parentFragmentManager.popBackStack()
         }
 
         binding.apply {
@@ -59,7 +72,10 @@ class ContactDetailFragment : Fragment() {
                                 R.drawable.baseline_star_filled_32
                             )
                         isFavorite = !isFavorite
-                        //TODO 실제 업데이트
+
+                        if(ContactDatabase.updateContactData(contactData.copy(isFavorite = isFavorite))) {
+                            (requireActivity() as MainActivity).listFromDetail(true)
+                        }
                     }
 
                     else -> {
@@ -85,6 +101,7 @@ class ContactDetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        contactData = null
     }
 
 }
