@@ -10,10 +10,10 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.databinding.ActivityMainBinding
+import com.nbcteam5.nbccontact.util.addCallDialog
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate( layoutInflater ) }
-    private lateinit var viewPagerAdapter : ViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         binding.floatButton.setOnClickListener {
-
+            addCallDialog(onSuccess = {
+                mainTrans()
+            })
         }
     }
 
