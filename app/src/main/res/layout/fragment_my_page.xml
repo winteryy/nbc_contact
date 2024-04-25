@@ -35,4 +35,5 @@
         android:layout_marginTop="550dp"
         android:layout_marginLeft="105dp"
         android:text="010-0000-0000" />
+
 </FrameLayout>
