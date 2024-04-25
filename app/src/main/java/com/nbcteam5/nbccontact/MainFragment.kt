@@ -40,11 +40,10 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val binding = FragmentMainBinding.bind(view)
-        initViews(binding)
+        initViews()
     }
 
-    private fun initViews(binding: FragmentMainBinding) {
+    private fun initViews() {
 
         viewPagerAdapter = ViewPagerAdapter(list, requireActivity())
         binding.viewPager.adapter = viewPagerAdapter
