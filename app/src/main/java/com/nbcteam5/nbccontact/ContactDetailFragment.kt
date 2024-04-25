@@ -37,7 +37,6 @@ class ContactDetailFragment : Fragment() {
 
         binding.toolBar.setNavigationOnClickListener {
             //TODO 뒤로가기
-            requireActivity().
         }
 
         binding.apply {
