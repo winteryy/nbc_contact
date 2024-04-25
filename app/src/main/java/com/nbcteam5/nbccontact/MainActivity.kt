@@ -27,14 +27,14 @@ class MainActivity : AppCompatActivity() {
     private fun initViews() {
         binding.floatButton.setOnClickListener {
             addCallDialog(onSuccess = {
-                mainTrans()
+                plugIn()
             })
         }
     }
 
     private fun mainTrans() {
         val trans = supportFragmentManager.beginTransaction()
-        trans.replace(R.id.fragment_container, MainFragment())
+        trans.replace(R.id.fragment_container, MainFragment(), MAIN_FRAGMENT)
         trans.commit()
     }
 
@@ -53,10 +53,19 @@ class MainActivity : AppCompatActivity() {
 
     fun listFromDetail(isUpdated : Boolean) {
         supportFragmentManager.popBackStack()
+        if(isUpdated) {
+            plugIn()
+        }
+    }
+
+    private fun plugIn() {
+        (supportFragmentManager.findFragmentByTag(MAIN_FRAGMENT) as MainFragment).reQuire()
     }
 
     companion object {
         const val DETAIL_FROM_LIST = "detailfromlist"
         const val LIST_FROM_DETAIL = "listfromdetail"
+
+        const val MAIN_FRAGMENT = "mainfragment"
     }
 }
