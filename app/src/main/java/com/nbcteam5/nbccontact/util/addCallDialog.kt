@@ -31,11 +31,11 @@ fun Activity.addCallDialog(
         val newName = dialogBinding.name.text.toString()
         val newPhoneNumber = dialogBinding.phoneNumber.text.toString()
         val newEmail = dialogBinding.email.text.toString()
-        val newEvent = dialogBinding.event.text.toString()
+        val newAdress = dialogBinding.adress.text.toString()
         val newImage = dialogBinding.phoneImageView.toString()
 
         //이미 저장되어 있는 번호
-        val existPhoneNumber = ContactDatabase.findContactByName(newPhoneNumber)
+        val existPhoneNumber = ContactDatabase.findContactByName(newPhoneNumber, newName)
 
         if (existPhoneNumber != null) {
             Toast.makeText(this, "이미 저장되어 있는 번호 입니다", Toast.LENGTH_LONG).show()
@@ -48,7 +48,7 @@ fun Activity.addCallDialog(
                 name = newName,
                 profileImage = newImage,
                 phoneNumber = newPhoneNumber,
-                address = newEvent,
+                address = newAdress,
                 email = newEmail,
             )
             // 연락처를 저장
