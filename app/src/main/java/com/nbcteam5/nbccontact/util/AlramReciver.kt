@@ -79,7 +79,7 @@ private fun deliverNotification(context: Context){
     val builder = NotificationCompat.Builder(context, CHANNEL_ID)
         .setSmallIcon(R.mipmap.ic_launcher_foreground) // 아이콘
         .setContentTitle("타이틀 입니다.") // 제목
-        .setContentText("내용 입니다.") // 내용
+        .setContentText("전화를 거세요") // 내용
         .setContentIntent(contentPendingIntent)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
         .setAutoCancel(true)

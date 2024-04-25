@@ -44,28 +44,38 @@ fun Activity.addCallDialog(
 
     // chip 그룹
     val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-
-    val intent = Intent(this,AlarmReceiver::class.java)
+    val intent = Intent(this, AlarmReceiver::class.java)
     val pendingIntent = PendingIntent.getBroadcast(
         this, NOTIFICATION_ID, intent,
         PendingIntent.FLAG_UPDATE_CURRENT
     )
-
-
     val chipGroup = dialogBinding.chipGroup
     chipGroup.setOnCheckedChangeListener { group, checkedId ->
         for (i in 0 until group.childCount) {
             val chip = group.getChildAt(i) as Chip
-            if(chip.id == checkedId) {
+            if (chip.id == checkedId) {
                 // 선택된 Chip의 배경색을 변경합니다.
-                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.theme_green))
+                chip.chipBackgroundColor = ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.theme_green
+                    )
+                )
             } else {
                 // 다른 Chip들은 원래의 색상으로 되돌립니다.
-                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.theme_light_green))
+                chip.chipBackgroundColor = ColorStateList.valueOf(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.theme_light_green
+                    )
+                )
             }
         }
         when (checkedId) {
-            R.id.off -> {null}
+            R.id.off -> {
+                null
+            }
+
             R.id.minute5 -> {
                 val triggerTime = (SystemClock.elapsedRealtime() // 기기가 부팅된 후 경과한 시간 사용
                         + ALARM_5TIMER * 1000) // ms 이기 때문에 초단위로 변환 (*1000)
@@ -74,8 +84,9 @@ fun Activity.addCallDialog(
                     triggerTime,
                     pendingIntent
                 ) // set : 일회성 알림
-                "$ALARM_5TIMER 분 후에 알림이 발생합니다."
+                Toast.makeText(this, "$ALARM_5TIMER 분 후에 알림이 발생합니다.", Toast.LENGTH_LONG).show()
             }
+
             R.id.minute10 -> {
                 val triggerTime = (SystemClock.elapsedRealtime() // 기기가 부팅된 후 경과한 시간 사용
                         + ALARM_10TIMER * 1000) // ms 이기 때문에 초단위로 변환 (*1000)
@@ -84,8 +95,9 @@ fun Activity.addCallDialog(
                     triggerTime,
                     pendingIntent
                 ) // set : 일회성 알림
-                "$ALARM_10TIMER 분 후에 알림이 발생합니다."
+                Toast.makeText(this, "$ALARM_10TIMER 분 후에 알림이 발생합니다.", Toast.LENGTH_LONG).show()
             }
+
             R.id.minute30 -> {
                 val triggerTime = (SystemClock.elapsedRealtime() // 기기가 부팅된 후 경과한 시간 사용
                         + ALARM_30TIMER * 1000) // ms 이기 때문에 초단위로 변환 (*1000)
@@ -94,7 +106,7 @@ fun Activity.addCallDialog(
                     triggerTime,
                     pendingIntent
                 ) // set : 일회성 알림
-                "$ALARM_30TIMER 분 후에 알림이 발생합니다."
+                Toast.makeText(this, "$ALARM_30TIMER 분 후에 알림이 발생합니다.", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -115,7 +127,7 @@ fun Activity.addCallDialog(
         } else if (!isValidPhoneNumber(newPhoneNumber)) {
             Toast.makeText(this, "번호 저장 방식이 잘못되었습니다", Toast.LENGTH_LONG).show()
             return@setOnClickListener
-        } else if(!isValidEamil(newEmail)) {
+        } else if (!isValidEamil(newEmail)) {
             Toast.makeText(this, "이메일 작성방법이 잘못되었습니다.", Toast.LENGTH_LONG).show()
         } else {
             val newContact = ContactData(
