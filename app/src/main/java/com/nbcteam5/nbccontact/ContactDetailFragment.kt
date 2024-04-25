@@ -36,7 +36,7 @@ class ContactDetailFragment : Fragment() {
         isFavorite = contactData.isFavorite
 
         binding.toolBar.setNavigationOnClickListener {
-            //TODO 뒤로가기
+            //뒤로가기
         }
 
         binding.apply {
