@@ -4,44 +4,42 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.databinding.LayoutRvUserBinding
+import com.nbcteam5.nbccontact.databinding.LayoutRvUserGridBinding
 
 class MainContactListAdapter(
-    private val onClick: (ContactData) -> Unit
-): ListAdapter<ContactData, MainContactListAdapter.ContactViewHolder>(DIFF_UTIL) {
+    private val layoutType: LayoutType,
+    private val onClick: (ContactData) -> Unit,
+): ListAdapter<ContactData, BaseViewHolder>(DIFF_UTIL) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-        return ContactViewHolder(
-            LayoutRvUserBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
-    }
-
-    override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-        holder.onBind(getItem(position))
-    }
-
-
-    inner class ContactViewHolder(
-        private val binding: LayoutRvUserBinding
-    ): RecyclerView.ViewHolder(binding.root) {
-
-        fun onBind(item: ContactData) {
-            binding.apply {
-                tvRvUserName.text = item.name
-                ivRvUser.load(item.profileImage)
-                ivRvFavorite.load(if(item.isFavorite) R.drawable.baseline_star_filled_32 else R.drawable.baseline_star_border_32)
-                root.setOnClickListener {
-                    onClick(item)
-                }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
+        return when(layoutType) {
+            LayoutType.LINEAR_LAYOUT -> {
+                ContactLinearViewHolder(
+                    LayoutRvUserBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ),
+                    onClick
+                )
+            }
+            LayoutType.GRID_LAYOUT -> {
+                ContactGridViewHolder(
+                    LayoutRvUserGridBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ),
+                    onClick
+                )
             }
         }
+    }
+
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
+        holder.onBind(getItem(position))
     }
 
     companion object {
@@ -55,5 +53,9 @@ class MainContactListAdapter(
             }
 
         }
+    }
+
+    enum class LayoutType {
+        LINEAR_LAYOUT, GRID_LAYOUT
     }
 }
