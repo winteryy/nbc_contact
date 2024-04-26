@@ -1,22 +1,21 @@
+package com.nbcteam5.nbccontact
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import coil.load
-import com.nbcteam5.nbccontact.MainActivity
-import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.data.ContactDatabase
-import com.nbcteam5.nbccontact.data.UserData
 import com.nbcteam5.nbccontact.databinding.FragmentMyPageBinding
 import kotlin.random.Random
 
 class MyPageFragment : Fragment() {
     private var _binding: FragmentMyPageBinding? = null
     private val binding get() = _binding!!
+
     private val recommendUserData = getRandomPeople()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,21 +28,19 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
-        binding.contact.setOnClickListener(){
+        binding.contact.setOnClickListener {
             moveDetail()
         }
     }
 
     private fun moveDetail(){
-        (requireActivity() as MainActivity).detailFromList(recommendUserData)
+        (requireActivity() as MainActivity).detailFromState(recommendUserData)
     }
 
 
-    private fun
-            getRandomPeople():ContactData{
+    private fun getRandomPeople():ContactData{
         val userList = ContactDatabase.getContactData()
         return userList[Random.nextInt(userList.size)]
-
     }
 
     private fun initViews(){
@@ -62,4 +59,3 @@ class MyPageFragment : Fragment() {
         _binding = null
     }
 }
-

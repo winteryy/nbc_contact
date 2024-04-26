@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="MyPageFragment"
+    tools:context=".MyPageFragment"
     android:background="@color/theme_beige">
 
     <com.google.android.material.imageview.ShapeableImageView
