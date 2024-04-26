@@ -42,6 +42,7 @@ object ContactDatabase {
 
     fun getContactData(): List<ContactData> = totalContactData
 
+
     fun addContactData(newData: ContactData): Boolean {
         _totalContactData = _totalContactData.toMutableList().apply {
             add(newData.copy(id = idNum, isFavorite = false))
