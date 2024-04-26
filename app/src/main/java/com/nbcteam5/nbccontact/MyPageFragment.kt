@@ -2,17 +2,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import coil.load
+import com.nbcteam5.nbccontact.MainActivity
+import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.data.UserData
 import com.nbcteam5.nbccontact.databinding.FragmentMyPageBinding
+import kotlin.random.Random
 
 class MyPageFragment : Fragment() {
     private var _binding: FragmentMyPageBinding? = null
     private val binding get() = _binding!!
-    private val contactData : ContactData? = null
-
+    private val recommendUserData = getRandomPeople()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,24 +29,33 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
+        binding.contact.setOnClickListener(){
+            moveDetail()
+        }
     }
+
+    private fun moveDetail(){
+        (requireActivity() as MainActivity).detailFromList(recommendUserData)
+    }
+
+
+    private fun
+            getRandomPeople():ContactData{
+        val userList = ContactDatabase.getContactData()
+        return userList[Random.nextInt(userList.size)]
+
+    }
+
     private fun initViews(){
-        val user = getUserInfo()
+        val user = ContactDatabase.getUserData()
         binding.name.text = user.name
         binding.number.text = user.phoneNumber
         binding.home.text = user.address
         binding.email.text = user.email
+        binding.ivRvUser.load(recommendUserData.profileImage)
+        binding.ivRvFavorite.isVisible = recommendUserData.isFavorite
+        binding.tvRvUserName.text = recommendUserData.name
     }
-    private fun getUserInfo(): UserData {
-        val result = (contactData as ContactDatabase).getUserData()
-        return UserData(
-            name = result.name,
-            phoneNumber = result.phoneNumber,
-            address = result.address,
-            email = result.email
-        )
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
