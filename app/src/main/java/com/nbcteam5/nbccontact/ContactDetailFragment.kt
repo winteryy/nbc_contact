@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.os.BundleCompat.getParcelable
 import androidx.fragment.app.Fragment
 import coil.load
 import com.nbcteam5.nbccontact.data.ContactData
@@ -59,6 +58,13 @@ class ContactDetailFragment : Fragment() {
             addressContent.setContentText(contactData.address)
             emailContent.setContentText(contactData.email)
             toolBar.title = contactData.name
+            toolBar.menu.findItem(R.id.favoriteButton).icon = if(isFavorite) ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.baseline_star_filled_32
+            ) else ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.baseline_star_border_32
+            )
             toolBar.setOnMenuItemClickListener { menu ->
                 when (menu.itemId) {
                     R.id.favoriteButton -> {
