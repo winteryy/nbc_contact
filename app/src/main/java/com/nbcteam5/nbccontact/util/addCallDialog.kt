@@ -17,7 +17,6 @@ import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import com.google.android.material.chip.Chip
 import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.data.ContactData
