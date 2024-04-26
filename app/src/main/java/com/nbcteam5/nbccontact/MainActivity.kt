@@ -1,6 +1,6 @@
 package com.nbcteam5.nbccontact
 
-import android.annotation.SuppressLint
+import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -107,15 +107,14 @@ class MainActivity : AppCompatActivity() {
         (supportFragmentManager.findFragmentByTag(MAIN_FRAGMENT) as MainFragment).reQuire()
     }
 
-    @SuppressLint("Recycle")
     private fun bindViews() = with(binding) {
         callButton.setOnClickListener {
-            val status = ContextCompat.checkSelfPermission(this@MainActivity, "android.permission.READ_CONTACTS")
+            val status = ContextCompat.checkSelfPermission(this@MainActivity, Manifest.permission.READ_CONTACTS)
             if(status == PackageManager.PERMISSION_GRANTED) {
                 val intent = Intent(Intent.ACTION_PICK, ContactsContract.CommonDataKinds.Phone.CONTENT_URI)
                 request.launch(intent)
             } else {
-                ActivityCompat.requestPermissions(this@MainActivity, arrayOf<String>("android.permission.READ_CONTACTS"), 100)
+                ActivityCompat.requestPermissions(this@MainActivity, arrayOf<String>(Manifest.permission.READ_CONTACTS), 100)
             }
         }
     }
