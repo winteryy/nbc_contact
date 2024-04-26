@@ -1,5 +1,6 @@
 package com.nbcteam5.nbccontact
 
+import MyPageFragment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
