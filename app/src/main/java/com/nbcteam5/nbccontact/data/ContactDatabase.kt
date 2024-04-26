@@ -43,6 +43,7 @@ object ContactDatabase {
     fun getContactData(): List<ContactData> = totalContactData
 
 
+    fun getUserData(): UserData=UserData(name="김새동", phoneNumber = "010-6543-9876", address = "부산 홍길동 시소아파트 502동 3호", email = "birddong@naver.com")
     fun addContactData(newData: ContactData): Boolean {
         _totalContactData = _totalContactData.toMutableList().apply {
             add(newData.copy(id = idNum, isFavorite = false))

@@ -1,18 +1,12 @@
 package com.nbcteam5.nbccontact
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
-import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.google.android.material.tabs.TabLayout
+import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
-import com.nbcteam5.nbccontact.databinding.ActivityMainBinding
 import com.nbcteam5.nbccontact.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
