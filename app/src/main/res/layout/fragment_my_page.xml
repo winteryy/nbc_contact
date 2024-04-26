@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="MyPageFragment">
+    tools:context="MyPageFragment"
+    android:background="@color/theme_beige">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image"
@@ -47,7 +48,11 @@
 
     <TextView
         android:id="@+id/home"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:layout_marginHorizontal="40dp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textStyle="bold"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@color/theme_light_green"
@@ -64,6 +69,7 @@
         android:layout_marginTop="24dp"
         android:background="@color/theme_light_green"
         android:text="hong@naver.com"
+        android:textStyle="bold"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

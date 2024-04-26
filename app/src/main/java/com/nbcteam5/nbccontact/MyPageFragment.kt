@@ -3,11 +3,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.nbcteam5.nbccontact.data.ContactData
+import com.nbcteam5.nbccontact.data.ContactDatabase
+import com.nbcteam5.nbccontact.data.UserData
 import com.nbcteam5.nbccontact.databinding.FragmentMyPageBinding
 
 class MyPageFragment : Fragment() {
     private var _binding: FragmentMyPageBinding? = null
     private val binding get() = _binding!!
+    private val contactData : ContactData? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,32 +23,25 @@ class MyPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initViews()
+    }
+    private fun initViews(){
         val user = getUserInfo()
-
         binding.name.text = user.name
         binding.number.text = user.phoneNumber
         binding.home.text = user.address
         binding.email.text = user.email
-
-//        binding.btn.setOnClickListener { requireActivity().finish() }
     }
-
-    private fun getUserInfo(): User {
-        return User(
-            name = "아무개",
-            phoneNumber = "010-4321-9876",
-            address = "경기도 스타시 르타동",
-            email = "noonedog@naver.com"
+    private fun getUserInfo(): UserData {
+        val result = (contactData as ContactDatabase).getUserData()
+        return UserData(
+            name = result.name,
+            phoneNumber = result.phoneNumber,
+            address = result.address,
+            email = result.email
         )
     }
 
-    data class User(
-        val name: String,
-        val phoneNumber: String,
-        val address: String,
-        val email: String
-    )
 
     override fun onDestroyView() {
         super.onDestroyView()
