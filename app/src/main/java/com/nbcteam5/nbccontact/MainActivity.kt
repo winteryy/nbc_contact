@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                 val combine = ContactData(
                     id = -1,
                     name = name,
-                    profileImage = R.drawable.person10.toString(),
+                    profileImage = "android.resource://com.nbcteam5.nbccontact/" + R.drawable.person10,
                     phoneNumber = phone,
                     address = "서울시",
                     email = "weqwewq@naver.com"
@@ -71,6 +71,19 @@ class MainActivity : AppCompatActivity() {
         trans.commit()
     }
 
+    fun detailFromMyPage(contactData: ContactData) {
+        val bundle = Bundle()
+        val detailFragment = ContactDetailFragment()
+        bundle.putParcelable(DETAIL_FROM_MY, contactData)
+        detailFragment.arguments = bundle
+
+        val trans = supportFragmentManager.beginTransaction()
+        trans.replace(R.id.fragment_container, detailFragment)
+        trans.setReorderingAllowed(true)
+        trans.addToBackStack(null)
+        trans.commit()
+    }
+
     fun detailFromList(contactData: ContactData) {
         val bundle = Bundle()
         val detailFragment = ContactDetailFragment()
@@ -85,7 +98,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun listFromDetail(isUpdated : Boolean) {
-        supportFragmentManager.popBackStack()
         if(isUpdated) {
             plugIn()
         }
@@ -124,6 +136,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val DETAIL_FROM_LIST = "detailfromlist"
+        const val DETAIL_FROM_MY = "detailfrommy"
         const val LIST_FROM_DETAIL = "listfromdetail"
 
         const val MAIN_FRAGMENT = "mainfragment"
