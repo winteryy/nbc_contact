@@ -73,6 +73,7 @@ private fun deliverNotification(context: Context){
         2. FLAG_CANCEL_CURRENT : 현재 인텐트가 이미 등록되어있다면 삭제, 다시 등록
         3. FLAG_NO_CREATE : 이미 등록된 인텐트가 있다면, null
         4. FLAG_ONE_SHOT : 한번 사용되면, 그 다음에 다시 사용하지 않음
+        5. FLAG_IMMUTABLE : 
          */
     )
 
