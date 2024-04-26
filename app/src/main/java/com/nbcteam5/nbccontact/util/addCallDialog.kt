@@ -144,7 +144,7 @@ private fun isValidEamil(email: String): Boolean {
 fun Activity.setNotification(selectedChipId: Int) {
     val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
     val intent = Intent(this, AlarmReceiver::class.java)
-    val pendingIntent = PendingIntent.getBroadcast(this, NOTIFICATION_ID, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+    val pendingIntent = PendingIntent.getBroadcast(this, NOTIFICATION_ID, intent, PendingIntent.FLAG_IMMUTABLE)
 
     when (selectedChipId) {
         R.id.off -> {
