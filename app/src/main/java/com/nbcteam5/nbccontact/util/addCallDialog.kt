@@ -79,7 +79,7 @@ fun Activity.addCallDialog(
         val newPhoneNumber = dialogBinding.phoneNumber.text.toString()
         val newEmail = dialogBinding.email.text.toString()
         val newAdress = dialogBinding.adress.text.toString()
-        val newImage = dialogBinding.phoneImageView.setImageResource(R.drawable.person1)
+        val newImage = ContactDatabase.RES_URI + R.drawable.person1
 
         //이미 저장되어 있는 번호
         val existPhoneNumber = ContactDatabase.findContactByName(newPhoneNumber, newName)
@@ -99,7 +99,7 @@ fun Activity.addCallDialog(
             }
             val newContact = ContactData(
                 name = newName,
-                profileImage = newImage.toString(),
+                profileImage = newImage,
                 phoneNumber = newPhoneNumber,
                 address = newAdress,
                 email = newEmail,
