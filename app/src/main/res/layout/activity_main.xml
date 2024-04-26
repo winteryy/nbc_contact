@@ -31,4 +31,20 @@
         app:fabSize="auto"
         app:maxImageSize="50dp"
         tools:ignore="ContentDescription" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/call_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        app:backgroundTint="@color/theme_light_green"
+        android:src="@drawable/baseline_backup_24"
+        app:fabCustomSize="50dp"
+        app:fabSize="auto"
+        app:maxImageSize="30dp"
+        app:layout_constraintBottom_toTopOf="@id/float_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
