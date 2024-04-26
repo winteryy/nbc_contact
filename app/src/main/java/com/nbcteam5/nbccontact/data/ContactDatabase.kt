@@ -79,4 +79,7 @@ object ContactDatabase {
         }
     }
 
+    fun findContactByName(phoneNumber: String, name: String): ContactData? {
+        return _totalContactData.find {it.phoneNumber == phoneNumber || it.name == name}
+    }
 }
