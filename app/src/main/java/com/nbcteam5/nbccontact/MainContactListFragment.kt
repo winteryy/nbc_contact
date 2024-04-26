@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nbcteam5.nbccontact.data.ContactDatabase
+import com.nbcteam5.nbccontact.databinding.FragmentMainContactListBinding
 
 class MainContactListFragment: Fragment() {
 
-//    private var _binding: FragmentMainContactListBinding? = null
-//    private val binding get() = _binding!!
+    private var _binding: FragmentMainContactListBinding? = null
+    private val binding get() = _binding!!
     private val adapter: MainContactListAdapter by lazy {
         MainContactListAdapter {
             (requireActivity() as MainActivity).detailFromList(it)
@@ -29,16 +31,18 @@ class MainContactListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.rv.adapter = adapter
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        refreshList()
 
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-//        _binding = null
+        _binding = null
     }
 
     fun refreshList() {
-        adapter.submitList(ContactDatabase.getContactData())
+        adapter.submitList(ContactDatabase.nameSorting())
     }
 }

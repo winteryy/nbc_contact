@@ -20,7 +20,7 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var mainActivity: MainActivity
-    private val list = listOf(ContactListFragment(), MyPageFragment())
+    private val list = listOf(MainContactListFragment(), MyPageFragment())
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -59,7 +59,7 @@ class MainFragment : Fragment() {
     }
 
     fun reQuire() {
-        (list[0] as ContactListFragment)
+        (list[0] as MainContactListFragment).refreshList()
     }
 
 
