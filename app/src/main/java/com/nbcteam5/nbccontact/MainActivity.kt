@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun listFromDetail(isUpdated : Boolean) {
-        supportFragmentManager.popBackStack()
         if(isUpdated) {
             plugIn()
         }
