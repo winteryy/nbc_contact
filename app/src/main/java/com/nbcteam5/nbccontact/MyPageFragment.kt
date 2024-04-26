@@ -2,16 +2,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import com.nbcteam5.nbccontact.data.ContactData
+import androidx.fragment.app.FragmentManager
+import coil.load
+import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.data.ContactDatabase
-import com.nbcteam5.nbccontact.data.UserData
 import com.nbcteam5.nbccontact.databinding.FragmentMyPageBinding
+import kotlin.random.Random
 
 class MyPageFragment : Fragment() {
     private var _binding: FragmentMyPageBinding? = null
     private val binding get() = _binding!!
-//    private val contactData : ContactData? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,17 +26,27 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
+        randomPeople()
         binding.contact.setOnClickListener(){
-            randompeople()
+            moveDetail()
         }
     }
-    private fun randompeople(){
-        val range = (1..11)
-        val randomUser = ContactDatabase.()
-        binding.name.text = randomUser.name
-        binding.number.text = randomUser.phoneNumber
-        binding.home.text = randomUser.address
-        binding.email.text = randomUser.email
+    private fun moveDetail(){
+        val transaction = parentFragmentManager
+        transaction.replace(R.id.fragment_container, fragment_contact_detail)
+        transaction.commit()
+    }
+    }
+
+
+    private fun
+            randomPeople(){
+        val userList = ContactDatabase.getContactData()
+        val randomUser = userList[Random.nextInt(userList.size)]
+        binding.ivRvUser.load(randomUser.profileImage)
+        binding.ivRvFavorite.isVisible = randomUser.isFavorite
+        binding.tvRvUserName.text = randomUser.name
+
     }
     private fun initViews(){
         val user = ContactDatabase.getUserData()
@@ -43,15 +55,6 @@ class MyPageFragment : Fragment() {
         binding.home.text = user.address
         binding.email.text = user.email
     }
-//    private fun getUserInfo(): UserData {
-//        val result = (contactData as ContactDatabase).getUserData()
-//        return UserData(
-//            name = result.name,
-//            phoneNumber = result.phoneNumber,
-//            address = result.address,
-//            email = result.email
-//        )
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
