@@ -31,7 +31,7 @@ class MainContactListFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = MainContactListAdapter(layoutType) {
-            (requireActivity() as MainActivity).detailFromList(it)
+            (requireActivity() as MainActivity).detailFromState(it)
         }
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -47,7 +47,7 @@ class MainContactListFragment: Fragment() {
             MainContactListAdapter.LayoutType.LINEAR_LAYOUT -> {
                 layoutType = MainContactListAdapter.LayoutType.GRID_LAYOUT
                 adapter = MainContactListAdapter(layoutType) {
-                    (requireActivity() as MainActivity).detailFromList(it)
+                    (requireActivity() as MainActivity).detailFromState(it)
                 }
                 binding.recyclerView.adapter = adapter
                 binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
@@ -57,7 +57,7 @@ class MainContactListFragment: Fragment() {
             MainContactListAdapter.LayoutType.GRID_LAYOUT -> {
                 layoutType = MainContactListAdapter.LayoutType.LINEAR_LAYOUT
                 adapter = MainContactListAdapter(layoutType) {
-                    (requireActivity() as MainActivity).detailFromList(it)
+                    (requireActivity() as MainActivity).detailFromState(it)
                 }
                 binding.recyclerView.adapter = adapter
                 binding.recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)

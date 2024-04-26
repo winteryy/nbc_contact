@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         trans.commit()
     }
 
-    fun detailFromMyPage(contactData: ContactData) {
+    /*fun detailFromMyPage(contactData: ContactData) {
         val bundle = Bundle()
         val detailFragment = ContactDetailFragment()
         bundle.putParcelable(DETAIL_FROM_MY, contactData)
@@ -82,12 +82,12 @@ class MainActivity : AppCompatActivity() {
         trans.setReorderingAllowed(true)
         trans.addToBackStack(null)
         trans.commit()
-    }
+    }*/
 
-    fun detailFromList(contactData: ContactData) {
+    fun detailFromState(contactData: ContactData) {
         val bundle = Bundle()
         val detailFragment = ContactDetailFragment()
-        bundle.putParcelable(DETAIL_FROM_LIST, contactData)
+        bundle.putParcelable(DETAIL_FROM_STATE, contactData)
         detailFragment.arguments = bundle
 
         val trans = supportFragmentManager.beginTransaction()
@@ -134,7 +134,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val DETAIL_FROM_LIST = "detailfromlist"
+        const val DETAIL_FROM_STATE = "detailfromstate"
         const val DETAIL_FROM_MY = "detailfrommy"
         const val LIST_FROM_DETAIL = "listfromdetail"
 

@@ -34,7 +34,7 @@ class MyPageFragment : Fragment() {
     }
 
     private fun moveDetail(){
-        (requireActivity() as MainActivity).detailFromMyPage(recommendUserData)
+        (requireActivity() as MainActivity).detailFromState(recommendUserData)
     }
 
 

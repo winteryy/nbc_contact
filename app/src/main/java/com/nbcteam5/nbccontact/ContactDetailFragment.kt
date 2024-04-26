@@ -26,9 +26,9 @@ class ContactDetailFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         contactData = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable(MainActivity.DETAIL_FROM_LIST, ContactData::class.java)
+            arguments?.getParcelable(MainActivity.DETAIL_FROM_STATE, ContactData::class.java)
         }else {
-            arguments?.getParcelable(MainActivity.DETAIL_FROM_LIST) as ContactData?
+            arguments?.getParcelable(MainActivity.DETAIL_FROM_STATE) as ContactData?
         }
     }
 
