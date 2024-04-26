@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                 val combine = ContactData(
                     id = -1,
                     name = name,
-                    profileImage = "android.resource://com.nbcteam5.nbccontact/" + R.drawable.person10,
+                    profileImage = "android.resource://com.nbcteam5.nbccontact/" + R.drawable.image,
                     phoneNumber = phone,
                     address = "서울시",
                     email = "weqwewq@naver.com"
