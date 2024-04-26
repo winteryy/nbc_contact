@@ -48,7 +48,7 @@ fun Activity.addCallDialog(
     val intent = Intent(this, AlarmReceiver::class.java)
     val pendingIntent = PendingIntent.getBroadcast(
         this, NOTIFICATION_ID, intent,
-        PendingIntent.FLAG_UPDATE_CURRENT
+        PendingIntent.FLAG_IMMUTABLE
     )
     val chipGroup = dialogBinding.chipGroup
     chipGroup.setOnCheckedChangeListener { group, checkedId ->
