@@ -36,7 +36,12 @@ object ContactDatabase {
     )
     private val totalContactData: List<ContactData> get() = _totalContactData
 
-    private val userData = UserData(name="김새동", phoneNumber = "010-6543-9876", address = "부산 홍길동 시소아파트 502동 3호", email = "birddong@naver.com")
+    private val userData = UserData(
+        name="김새동",
+        phoneNumber = "010-6543-9876",
+        profileImage = RES_URI+R.drawable.image,
+        address = "부산 홍길동 시소아파트 502동 3호",
+        email = "birddong@naver.com")
 
     fun getContactData(): List<ContactData> = totalContactData
 
