@@ -41,12 +41,6 @@ fun Activity.addCallDialog(
     dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
     // chip 그룹
-    val alarmManager = getSystemService(ALARM_SERVICE) as AlarmManager
-    val intent = Intent(this, AlarmReceiver::class.java)
-    val pendingIntent = PendingIntent.getBroadcast(
-        this, NOTIFICATION_ID, intent,
-        PendingIntent.FLAG_IMMUTABLE
-    )
     val chipGroup = dialogBinding.chipGroup
     chipGroup.setOnCheckedChangeListener { group, checkedId ->
         for (i in 0 until group.childCount) {
@@ -82,13 +76,13 @@ fun Activity.addCallDialog(
         val existPhoneNumber = ContactDatabase.findContactByNumber(newPhoneNumber)
 
         if (existPhoneNumber != null) {
-            Toast.makeText(this, "이미 저장되어 있는 번호 입니다", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.vaild_fail_exist_number), Toast.LENGTH_LONG).show()
             return@setOnClickListener
         } else if (!isValidPhoneNumber(newPhoneNumber)) {
-            Toast.makeText(this, "번호 저장 방식이 잘못되었습니다", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.vaild_fail_wrong_number), Toast.LENGTH_LONG).show()
             return@setOnClickListener
         } else if (!isValidEamil(newEmail)) {
-            Toast.makeText(this, "이메일 작성방법이 잘못되었습니다.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.vaild_fail_wrong_email), Toast.LENGTH_LONG).show()
         } else {
             val selectedChipId = dialogBinding.chipGroup.checkedChipId
             if (selectedChipId != -1) {
@@ -103,14 +97,14 @@ fun Activity.addCallDialog(
             )
             // 연락처를 저장
             ContactDatabase.addContactData(newContact)
-            Toast.makeText(this, "연락처가 저장되었습니다", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.save_contact_success), Toast.LENGTH_LONG).show()
             onSuccess.invoke()
 
             dialog.dismiss()
         }
     }
     dialogBinding.cancleBtn.setOnClickListener {
-        Toast.makeText(this, "취소 되었습니다", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.save_contact_cancel), Toast.LENGTH_LONG).show()
         dialog.dismiss() // 취소 버튼 클릭 후 대화상자 닫기
     }
     dialog.show()

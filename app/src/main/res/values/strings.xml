@@ -9,4 +9,9 @@
     <string name="call">통화</string>
     <string name="sms">메시지</string>
     <string name="email">이메일</string>
+    <string name="vaild_fail_exist_number">이미 저장되어 있는 번호 입니다</string>
+    <string name="vaild_fail_wrong_number">번호 저장 방식이 잘못되었습니다</string>
+    <string name="vaild_fail_wrong_email">이메일 작성방법이 잘못되었습니다.</string>
+    <string name="save_contact_success">연락처가 저장되었습니다</string>
+    <string name="save_contact_cancel">취소 되었습니다</string>
 </resources>
