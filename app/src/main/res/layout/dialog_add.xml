@@ -37,7 +37,7 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="@string/name"
                 android:maxLines="1"
                 app:layout_constraintTop_toBottomOf="@+id/cardView"
                 android:layout_marginTop="30dp"
@@ -48,7 +48,7 @@
                 android:id="@+id/phoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="phoneNumber"
+                android:hint="@string/contact"
                 android:inputType="phone"
                 android:maxLines="1"
                 app:layout_constraintTop_toBottomOf="@+id/name"
@@ -60,7 +60,7 @@
                 android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="email"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
@@ -72,7 +72,7 @@
                 android:id="@+id/adress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Adress"
+                android:hint="@string/address"
                 app:layout_constraintTop_toBottomOf="@+id/email"
                 android:layout_marginTop="30dp"
                 android:layout_marginStart="30dp"
@@ -94,7 +94,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     app:chipBackgroundColor="@color/theme_light_green"
-                    android:text="OFF"/>
+                    android:text="@string/noti_off"/>
 
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -104,7 +104,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     app:chipBackgroundColor="@color/theme_light_green"
-                    android:text="5분 뒤 알림"/>
+                    android:text="@string/noti_5m"/>
 
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -114,7 +114,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     app:chipBackgroundColor="@color/theme_light_green"
-                    android:text="10분 뒤 알림"/>
+                    android:text="@string/noti_10m"/>
 
                 <com.google.android.material.chip.Chip
                     style="@style/Widget.MaterialComponents.Chip.Choice"
@@ -124,7 +124,7 @@
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     app:chipBackgroundColor="@color/theme_light_green"
-                    android:text="30분 뒤 알림"/>
+                    android:text="@string/noti_30m"/>
 
             </com.google.android.material.chip.ChipGroup>
 

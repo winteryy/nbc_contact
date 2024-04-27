@@ -15,4 +15,8 @@
     <string name="save_contact_success">연락처가 저장되었습니다</string>
     <string name="save_contact_cancel">취소 되었습니다</string>
     <string name="today_msg">오늘의 친구에게 연락해보세요!</string>
+    <string name="noti_off">OFF</string>
+    <string name="noti_5m">5분 뒤 알림</string>
+    <string name="noti_10m">10분 뒤 알림</string>
+    <string name="noti_30m">30분 뒤 알림</string>
 </resources>
