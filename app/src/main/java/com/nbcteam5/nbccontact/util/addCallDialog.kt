@@ -76,13 +76,13 @@ fun Activity.addCallDialog(
         val existPhoneNumber = ContactDatabase.findContactByNumber(newPhoneNumber)
 
         if (existPhoneNumber != null) {
-            Toast.makeText(this, getString(R.string.vaild_fail_exist_number), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.valid_fail_exist_number), Toast.LENGTH_LONG).show()
             return@setOnClickListener
         } else if (!isValidPhoneNumber(newPhoneNumber)) {
-            Toast.makeText(this, getString(R.string.vaild_fail_wrong_number), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.valid_fail_wrong_number), Toast.LENGTH_LONG).show()
             return@setOnClickListener
         } else if (!isValidEamil(newEmail)) {
-            Toast.makeText(this, getString(R.string.vaild_fail_wrong_email), Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.valid_fail_wrong_email), Toast.LENGTH_LONG).show()
         } else {
             val selectedChipId = dialogBinding.chipGroup.checkedChipId
             if (selectedChipId != -1) {

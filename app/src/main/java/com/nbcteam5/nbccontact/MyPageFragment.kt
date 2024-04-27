@@ -51,7 +51,6 @@ class MyPageFragment : Fragment() {
         binding.home.text = user.address
         binding.email.text = user.email
         binding.ivRvUser.load(recommendUserData.profileImage)
-        binding.ivRvFavorite.isVisible = recommendUserData.isFavorite
         binding.tvRvUserName.text = recommendUserData.name
     }
 
