@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/favoriteButton"
-        android:icon="@drawable/baseline_star_border_32"
+        android:icon="@drawable/baseline_star_border_white_32"
         app:showAsAction="always"
         android:title="favorite" />
 </menu>
