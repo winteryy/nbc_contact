@@ -7,7 +7,7 @@ import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.databinding.LayoutRvUserBinding
 import com.nbcteam5.nbccontact.databinding.LayoutRvUserGridBinding
 
-abstract class BaseViewHolder(private val binding: ViewBinding) :
+abstract class BaseViewHolder(binding: ViewBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
         abstract fun onBind(item: ContactData)
@@ -21,7 +21,7 @@ class ContactLinearViewHolder(
         binding.apply {
             tvRvUserName.text = item.name
             ivRvUser.load(item.profileImage)
-            ivRvFavorite.load(if (item.isFavorite) R.drawable.baseline_star_filled_32 else R.drawable.baseline_star_border_32)
+            ivRvFavorite.load(if (item.isFavorite) R.drawable.baseline_star_filled_32 else R.drawable.baseline_star_border_black_32)
             root.setOnClickListener {
                 onClick(item)
             }
@@ -37,7 +37,7 @@ class ContactGridViewHolder(
         binding.apply {
             tvUserNameGrid.text = item.name
             ivRvUserGrid.load(item.profileImage)
-            ivRvFavoriteGrid.load(if (item.isFavorite) R.drawable.baseline_star_filled_32 else R.drawable.baseline_star_border_32)
+            ivRvFavoriteGrid.load(if (item.isFavorite) R.drawable.baseline_star_filled_32 else R.drawable.baseline_star_border_black_32)
             root.setOnClickListener {
                 onClick(item)
             }

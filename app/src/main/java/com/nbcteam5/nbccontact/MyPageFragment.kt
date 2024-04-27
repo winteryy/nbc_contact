@@ -47,10 +47,10 @@ class MyPageFragment : Fragment() {
         val user = ContactDatabase.getUserData()
         binding.name.text = user.name
         binding.number.text = user.phoneNumber
+        binding.image.load(user.profileImage)
         binding.home.text = user.address
         binding.email.text = user.email
         binding.ivRvUser.load(recommendUserData.profileImage)
-        binding.ivRvFavorite.isVisible = recommendUserData.isFavorite
         binding.tvRvUserName.text = recommendUserData.name
     }
 

@@ -44,34 +44,25 @@ class ContactDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val contactData = contactData?:return
-        isFavorite = contactData.isFavorite
+        contactData?.let {
+            isFavorite = it.isFavorite
 
-        binding.toolBar.setNavigationOnClickListener {
-            parentFragmentManager.popBackStack()
+            initView()
+            setListeners()
         }
 
+    }
+
+    private fun setListeners() {
+        val contactData = contactData!!
         binding.apply {
-            profileImageView.load(contactData.profileImage)
-            nameContent.setContentText(contactData.name)
-            phoneNumberContent.setContentText(contactData.phoneNumber)
-            addressContent.setContentText(contactData.address)
-            emailContent.setContentText(contactData.email)
-            toolBar.title = contactData.name
-            toolBar.menu.findItem(R.id.favoriteButton).icon = if(isFavorite) ContextCompat.getDrawable(
-                requireContext(),
-                R.drawable.baseline_star_filled_32
-            ) else ContextCompat.getDrawable(
-                requireContext(),
-                R.drawable.baseline_star_border_32
-            )
             toolBar.setOnMenuItemClickListener { menu ->
                 when (menu.itemId) {
                     R.id.favoriteButton -> {
                         menu.icon =
                             if (isFavorite) ContextCompat.getDrawable(
                                 requireContext(),
-                                R.drawable.baseline_star_border_32
+                                R.drawable.baseline_star_border_white_32
                             )
                             else ContextCompat.getDrawable(
                                 requireContext(),
@@ -91,16 +82,40 @@ class ContactDetailFragment : Fragment() {
                 return@setOnMenuItemClickListener menu != null
             }
 
+            toolBar.setNavigationOnClickListener {
+                parentFragmentManager.popBackStack()
+            }
+
             callButton.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_VIEW).apply {
                     data = Uri.parse("tel:" + contactData.phoneNumber)
                 })
             }
+
             smsButton.setOnClickListener {
                 startActivity(Intent(Intent.ACTION_SENDTO).apply {
                     data = Uri.parse("smsto:${contactData.phoneNumber}")
                 })
             }
+        }
+    }
+
+    private fun initView() {
+        val contactData = contactData!!
+        binding.apply {
+            profileImageView.load(contactData.profileImage)
+            nameContent.setContentText(contactData.name)
+            phoneNumberContent.setContentText(contactData.phoneNumber)
+            addressContent.setContentText(contactData.address)
+            emailContent.setContentText(contactData.email)
+            toolBar.title = contactData.name
+            toolBar.menu.findItem(R.id.favoriteButton).icon = if(isFavorite) ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.baseline_star_filled_32
+            ) else ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.baseline_star_border_white_32
+            )
         }
     }
 

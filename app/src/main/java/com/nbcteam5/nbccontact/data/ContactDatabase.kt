@@ -34,15 +34,20 @@ object ContactDatabase {
         contact10,
         contact11
     )
-
-    //저장된 데이터를 이름순으로 정렬하는 함수
-    fun nameSorting() = totalContactData.sortedWith(compareBy({!it.isFavorite},{it.name}))
-
     private val totalContactData: List<ContactData> get() = _totalContactData
+
+    private val userData = UserData(
+        name="김새동",
+        phoneNumber = "010-6543-9876",
+        profileImage = RES_URI+R.drawable.image,
+        address = "부산 홍길동 시소아파트 502동 3호",
+        email = "birddong@naver.com")
 
     fun getContactData(): List<ContactData> = totalContactData
 
-    fun getUserData(): UserData=UserData(name="김새동", phoneNumber = "010-6543-9876", address = "부산 홍길동 시소아파트 502동 3호", email = "birddong@naver.com")
+    fun getSortedContactData() = totalContactData.sortedWith(compareBy({!it.isFavorite},{it.name}))
+
+    fun getUserData() = userData
 
     fun addContactData(newData: ContactData): Boolean {
         _totalContactData = _totalContactData.toMutableList().apply {
@@ -81,7 +86,7 @@ object ContactDatabase {
         }
     }
 
-    fun findContactByName(phoneNumber: String, name: String): ContactData? {
-        return _totalContactData.find {it.phoneNumber == phoneNumber || it.name == name}
+    fun findContactByNumber(phoneNumber: String): ContactData? {
+        return _totalContactData.find {it.phoneNumber == phoneNumber}
     }
 }
