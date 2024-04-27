@@ -79,7 +79,7 @@ fun Activity.addCallDialog(
         val newImage = ContactDatabase.RES_URI + R.drawable.person1
 
         //이미 저장되어 있는 번호
-        val existPhoneNumber = ContactDatabase.findContactByNumber(newPhoneNumber, newName)
+        val existPhoneNumber = ContactDatabase.findContactByNumber(newPhoneNumber)
 
         if (existPhoneNumber != null) {
             Toast.makeText(this, "이미 저장되어 있는 번호 입니다", Toast.LENGTH_LONG).show()
