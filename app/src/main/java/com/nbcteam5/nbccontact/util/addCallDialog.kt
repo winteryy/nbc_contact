@@ -1,16 +1,11 @@
-@file:Suppress("UNREACHABLE_CODE")
-
 package com.nbcteam5.nbccontact.util
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlarmManager
 import android.app.PendingIntent
-import android.content.Context
 import android.content.Context.ALARM_SERVICE
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -19,7 +14,6 @@ import android.util.Patterns
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.chip.Chip
 import com.nbcteam5.nbccontact.R
@@ -85,7 +79,7 @@ fun Activity.addCallDialog(
         val newImage = ContactDatabase.RES_URI + R.drawable.person1
 
         //이미 저장되어 있는 번호
-        val existPhoneNumber = ContactDatabase.findContactByName(newPhoneNumber, newName)
+        val existPhoneNumber = ContactDatabase.findContactByNumber(newPhoneNumber, newName)
 
         if (existPhoneNumber != null) {
             Toast.makeText(this, "이미 저장되어 있는 번호 입니다", Toast.LENGTH_LONG).show()

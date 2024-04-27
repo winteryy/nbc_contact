@@ -73,6 +73,6 @@ class MainContactListFragment: Fragment() {
     }
 
     fun refreshList() {
-        adapter.submitList(ContactDatabase.nameSorting())
+        adapter.submitList(ContactDatabase.getSortedContactData())
     }
 }

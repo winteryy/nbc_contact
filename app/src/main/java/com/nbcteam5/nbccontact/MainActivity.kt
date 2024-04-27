@@ -15,7 +15,6 @@ import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.ActivityMainBinding
 import com.nbcteam5.nbccontact.util.addCallDialog
 
-
 class MainActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityMainBinding.inflate( layoutInflater ) }
@@ -154,8 +153,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val DETAIL_FROM_STATE = "detailfromstate"
-        const val DETAIL_FROM_MY = "detailfrommy"
-        const val LIST_FROM_DETAIL = "listfromdetail"
 
         const val MAIN_FRAGMENT = "mainfragment"
 

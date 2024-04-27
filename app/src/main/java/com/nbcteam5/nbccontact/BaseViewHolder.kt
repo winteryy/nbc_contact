@@ -7,7 +7,7 @@ import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.databinding.LayoutRvUserBinding
 import com.nbcteam5.nbccontact.databinding.LayoutRvUserGridBinding
 
-abstract class BaseViewHolder(private val binding: ViewBinding) :
+abstract class BaseViewHolder(binding: ViewBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
         abstract fun onBind(item: ContactData)
