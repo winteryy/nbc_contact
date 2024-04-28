@@ -1,4 +1,4 @@
-package com.nbcteam5.nbccontact
+package com.nbcteam5.nbccontact.presentation.main
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

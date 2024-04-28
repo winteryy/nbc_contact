@@ -1,4 +1,4 @@
-package com.nbcteam5.nbccontact
+package com.nbcteam5.nbccontact.presentation.main
 
 import android.content.Context
 import android.os.Bundle
@@ -7,7 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
+import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.databinding.FragmentMainBinding
+import com.nbcteam5.nbccontact.presentation.list.MainContactListFragment
+import com.nbcteam5.nbccontact.presentation.mypage.MyPageFragment
 
 class MainFragment : Fragment() {
     private val binding get() = _binding!!

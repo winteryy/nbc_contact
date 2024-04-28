@@ -87,7 +87,7 @@
                 android:src="@drawable/baseline_sms_24"
                 android:backgroundTint="@color/theme_green" />
 
-            <com.nbcteam5.nbccontact.DetailContentView
+            <com.nbcteam5.nbccontact.presentation.detail.DetailContentView
                 android:id="@+id/nameContent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                 app:title_text="@string/name"
                 app:content_text="asdasdasdas"/>
 
-            <com.nbcteam5.nbccontact.DetailContentView
+            <com.nbcteam5.nbccontact.presentation.detail.DetailContentView
                 android:id="@+id/phoneNumberContent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 app:title_text="@string/contact"
                 app:content_text="010-1234-5678"/>
 
-            <com.nbcteam5.nbccontact.DetailContentView
+            <com.nbcteam5.nbccontact.presentation.detail.DetailContentView
                 android:id="@+id/addressContent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                 app:title_text="@string/address"
                 app:content_text="abc@abc.com"/>
 
-            <com.nbcteam5.nbccontact.DetailContentView
+            <com.nbcteam5.nbccontact.presentation.detail.DetailContentView
                 android:id="@+id/emailContent"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

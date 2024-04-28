@@ -1,9 +1,10 @@
-package com.nbcteam5.nbccontact
+package com.nbcteam5.nbccontact.presentation.detail
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.cardview.widget.CardView
+import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.databinding.ViewDetatilContentBinding
 
 class DetailContentView(context: Context, attrs: AttributeSet): CardView(context, attrs) {

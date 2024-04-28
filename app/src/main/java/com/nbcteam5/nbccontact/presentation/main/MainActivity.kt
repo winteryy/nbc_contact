@@ -1,4 +1,4 @@
-package com.nbcteam5.nbccontact
+package com.nbcteam5.nbccontact.presentation.main
 
 import android.Manifest
 import android.content.Intent
@@ -10,9 +10,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.ActivityMainBinding
+import com.nbcteam5.nbccontact.presentation.detail.ContactDetailFragment
 import com.nbcteam5.nbccontact.util.addCallDialog
 
 class MainActivity : AppCompatActivity() {

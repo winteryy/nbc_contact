@@ -1,8 +1,9 @@
-package com.nbcteam5.nbccontact
+package com.nbcteam5.nbccontact.presentation.detail
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import coil.load
+import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.databinding.LayoutRvUserBinding
 import com.nbcteam5.nbccontact.databinding.LayoutRvUserGridBinding

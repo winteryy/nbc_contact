@@ -1,4 +1,4 @@
-package com.nbcteam5.nbccontact
+package com.nbcteam5.nbccontact.presentation.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.ListAdapter
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.databinding.LayoutRvUserBinding
 import com.nbcteam5.nbccontact.databinding.LayoutRvUserGridBinding
+import com.nbcteam5.nbccontact.presentation.detail.BaseViewHolder
+import com.nbcteam5.nbccontact.presentation.detail.ContactGridViewHolder
+import com.nbcteam5.nbccontact.presentation.detail.ContactLinearViewHolder
 
 class MainContactListAdapter(
     private val layoutType: LayoutType,
