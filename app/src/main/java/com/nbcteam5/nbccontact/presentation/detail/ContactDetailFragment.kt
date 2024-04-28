@@ -1,4 +1,4 @@
-package com.nbcteam5.nbccontact
+package com.nbcteam5.nbccontact.presentation.detail
 
 import android.content.Intent
 import android.net.Uri
@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import coil.load
+import com.nbcteam5.nbccontact.presentation.main.MainActivity
+import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.FragmentContactDetailBinding

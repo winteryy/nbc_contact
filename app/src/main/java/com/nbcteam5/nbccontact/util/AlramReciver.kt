@@ -7,7 +7,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import com.nbcteam5.nbccontact.MainActivity
+import com.nbcteam5.nbccontact.presentation.main.MainActivity
 import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.util.Constant.Companion.CHANNEL_ID
 import com.nbcteam5.nbccontact.util.Constant.Companion.NOTIFICATION_ID

@@ -1,12 +1,12 @@
-package com.nbcteam5.nbccontact
+package com.nbcteam5.nbccontact.presentation.mypage
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import coil.load
+import com.nbcteam5.nbccontact.presentation.main.MainActivity
 import com.nbcteam5.nbccontact.data.ContactData
 import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.FragmentMyPageBinding

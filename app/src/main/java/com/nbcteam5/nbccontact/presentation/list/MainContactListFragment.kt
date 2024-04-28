@@ -1,4 +1,4 @@
-package com.nbcteam5.nbccontact
+package com.nbcteam5.nbccontact.presentation.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.nbcteam5.nbccontact.presentation.main.MainActivity
+import com.nbcteam5.nbccontact.R
 import com.nbcteam5.nbccontact.data.ContactDatabase
 import com.nbcteam5.nbccontact.databinding.FragmentMainContactListBinding
 
