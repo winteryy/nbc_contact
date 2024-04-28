@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">nbc contact</string>
+    <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+    <string name="name">이름</string>
+    <string name="address">주소</string>
+    <string name="contact">연락처</string>
+
+    <string name="call">통화</string>
+    <string name="sms">메시지</string>
+    <string name="email">이메일</string>
+    <string name="valid_fail_exist_number">이미 저장되어 있는 번호 입니다</string>
+    <string name="valid_fail_wrong_number">번호 저장 방식이 잘못되었습니다</string>
+    <string name="valid_fail_wrong_email">이메일 작성방법이 잘못되었습니다.</string>
+    <string name="save_contact_success">연락처가 저장되었습니다</string>
+    <string name="save_contact_cancel">취소 되었습니다</string>
+    <string name="today_msg">오늘의 친구에게 연락해보세요!</string>
+    <string name="noti_off">OFF</string>
+    <string name="noti_5m">5분 뒤 알림</string>
+    <string name="noti_10m">10분 뒤 알림</string>
+    <string name="noti_30m">30분 뒤 알림</string>
+</resources>
