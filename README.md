@@ -1,25 +1,14 @@
-# nbc_contact<br>
-ContactData <br>
-ContactDatabase <br>
-추가 및 drawable 에 사람1~사람11 까지 이미지 아이콘 추가<br>
-glide 대신=> implementation("io.coil-kt:coil:0.10.0")  코일 라이브러리 추가<br>
-![image](https://github.com/winteryy/nbc_contact/assets/54714275/9a096605-c459-4236-a06d-70e3e281d32c)
-
 # 앱 개발 숙련 주차 팀프로젝트
 
 ## 연락처 앱
 
 ### 주요 기능 실행 이미지
 
-## Images
-
 <p align="center">
   <img src="screenshot2/mainactivity.gif">
 </p>
 
 ### 메인페이지
-
-## Images
 
 <p align="center">
   <img src="screenshot2/detailfragment2.gif">
@@ -28,15 +17,11 @@ glide 대신=> implementation("io.coil-kt:coil:0.10.0")  코일 라이브러리 
 
 ### 디테일페이지
 
-## Images
-
 <p align="center">
   <img src="screenshot2/mypagefragment.gif">
 </p>
 
 ### 마이 페이지
-
-## Images
 
 <p align="center">
   <img src="screenshot2/dialog.gif">
@@ -44,21 +29,17 @@ glide 대신=> implementation("io.coil-kt:coil:0.10.0")  코일 라이브러리 
 
 ### 다이얼로그 페이지
 
-## Images
-
 <p align="center">
   <img src="screenshot2/mainfragment.gif.gif">
 </p>
 
 ### 리스트 페이지
 
-## Images
-
 <p align="center">
   <img src="screenshot2/detailActivity.gif">
 </p>
 
-##요구사항
+## 요구 사항
 
 
 ### **마이 페이지 (MyPageFragment)**
